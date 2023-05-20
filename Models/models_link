@@ -1,7 +1,11 @@
 UNet with VGG16 backbone
-
+best model: https://drive.google.com/file/d/1Yzt6Z7RIVJtStmGPKdlHyEpP6f8HqzbZ/view?usp=share_link
+checkpoint: https://drive.google.com/file/d/12K-G66CPoiC6D4Znqdaac0fyKBXoVimg/view?usp=share_link
 
 UNet with MobileNetV2 backbone
-
+best model: https://drive.google.com/file/d/1SyIIyyy4kvdYYfJa1zuDu_97RDcgV4Kh/view?usp=share_link
+checkpoint: https://drive.google.com/file/d/1c7aGaDgaQmsk0MdWSTCW91F61VKckkDF/view?usp=share_link
 
 UNet with EfficientNetB5 backbone
+best model: https://drive.google.com/file/d/1uo3Lr0jQCF7rOuhWSAeDF5_hozeM8_19/view?usp=share_link
+checkpoint: https://drive.google.com/file/d/16r-l-tJnrGjyW-ME-X0lagv-fAks8x-H/view?usp=share_link

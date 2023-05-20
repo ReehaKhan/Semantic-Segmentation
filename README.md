@@ -87,14 +87,12 @@ decoder is such that it complements the backbone by gradually upsampling and
 fusing the feature maps. 
 
 <p align="center">
-    <img src="https://github.com/ReehaKhan/Semantic-Segmentation/blob/main/Architecture/unet%20architecture.png" width="200" height="500">
+    <img src="https://github.com/ReehaKhan/Semantic-Segmentation/blob/main/Architecture/unet%20architecture.png" width="500" height="300">
 </p>
 
 The paramters and the transfer learning setting for the models are as follows. Transfer learning is applied to all of the models, with the pre-trained weights from Imagenet.
 
-|          **Comparison of U-Net Models**         |   |   |
-|:----------------------------------------------:|---|---|
-|       | VGG-16 (baseline) | MobileNet-V2 | EfficientNet-B5 |
+|   UNet with the backbone of     | VGG-16 (baseline) | MobileNet-V2 | EfficientNet-B5 |
 |-------|-----------|--------------|-----------------|
 | Parameters | 23,749,836 | 6,630,540 | 30,164,924 |
 | Transfer Learning | Yes | Yes | Yes |
@@ -103,8 +101,7 @@ The paramters and the transfer learning setting for the models are as follows. T
 The loss function used Cross Entropy Loss.
 
 ### Training Parameters
-|              UNET with the backbone of                     |
-|       | VGG-16 (baseline) | MobileNet-V2 | EfficientNet-B5 |
+|   UNet with the backbone of     | VGG-16 (baseline) | MobileNet-V2 | EfficientNet-B5 |
 |---------------|--------------|------------------|----------|
 | Initial Learning Rate | 0.001 | 0.001 | 0.001 |
 | Optimizer | Adam | Adam | Adam |
@@ -117,53 +114,61 @@ The loss function used Cross Entropy Loss.
 
 ### Training Graphs for UNet with EfficientNet-B5 backbone
 <p align="center">
-    <img src="https://github.com/ReehaKhan/Semantic-Segmentation/blob/main/Training%20Graphs/effacc.png" width="200" height="200">
-    <img src="https://github.com/ReehaKhan/Semantic-Segmentation/blob/main/Training%20Graphs/effloss.png" width="200" height="200">
-    <img src="https://github.com/ReehaKhan/Semantic-Segmentation/blob/main/Training%20Graphs/effiou.png" width="200" height="200">
+    <img src="https://github.com/ReehaKhan/Semantic-Segmentation/blob/main/Training%20Graphs/effacc.png" width="250" height="250">
+    <img src="https://github.com/ReehaKhan/Semantic-Segmentation/blob/main/Training%20Graphs/effloss.png" width="250" height="250">
+    <img src="https://github.com/ReehaKhan/Semantic-Segmentation/blob/main/Training%20Graphs/effmoi.png" width="250" height="250">
 </p>
 
 ## Results
 #### Quantitative Classification Results (Expression)
 
-|                | **MobileNet V2** | **Efficient Net B1** | **ResNet18** |
-| -------------- | ---------------- | --------------------- | ------------ |
-| **Accuracy**         | 73.2             | 66.3                  | **76.7**          |
-| **Cohens Kappa**     | 0.60             | 0.46                  | **0.66**          |
-| **Krippendorffs Alpha** | -0.14            | -0.14                 | -0.14            |
-| **AUC**              | 0.67             | 0.58                  | **0.72**          |
-| **AUC-PR**           | 0.56             | 0.57                  | 0.56            |
+|     U-Net with backbone of        | VGG16(baseline) | MobileNet-V2 | EfficientNetB5 |
+|:-------------------------------:|---|---|---|
+| **Accuracy**    | 90.7  |     90.9     |     **91.6**   |
+| **Loss**        | 0.29  |     0.28     |      0.28     |
+| **mIoU**        | 0.64  |     0.61     |      0.65     |
 
-The classification report:
 
-|                  | Precision | Recall | F1-score | Support |
-|------------------|-----------|--------|----------|---------|
-| **MobileNet V2**    |           |        |          |           |
-| Neutral          | 0.58      | 0.86   | 0.69     | 14852     |
-| Happy            | 0.89      | 0.89   | 0.89     | 27005     |
-| Sad              | 0.72      | 0.31   | 0.43     | 5013      |
-| Surprise         | 0.57      | 0.37   | 0.45     | 2799      |
-| Fear             | 0.63      | 0.16   | 0.26     | 1274      |
-| Disgust          | 0.46      | 0.10   | 0.16     | 766       |
-| Anger            | 0.61      | 0.49   | 0.55     | 5043      |
-| Contempt         | 0.00      | 0.00   | 0.00     | 799       |
-| **EfficientNet B1** |           |        |          |           |
-| Neutral          | 0.50      | 0.83   | 0.62     | 14982     |
-| Happy            | 0.79      | 0.95   | 0.86     | 26889     |
-| Sad              | 0.91      | 0.01   | 0.02     | 4921      |
-| Surprise         | 1.00      | 0.00   | 0.00     | 2871      |
-| Fear             | 0.00      | 0.00   | 0.00     | 1341      |
-| Disgust          | 0.00      | 0.00   | 0.00     | 775       |
-| Anger            | 0.75      | 0.0.   | 0.06     | 4974      |
-| Contempt         | 0.00      | 0.00   | 0.00     | 778       |
-| **ResNet 18**         |           |        |          |           |
-| Neutral          | 0.65      | 0.81   | 0.72     | 14837     |
-| Happy            | 0.89      | 0.92   | 0.91     | 26935     |
-| Sad              | 0.69      | 0.50   | 0.58     | 5083      |
-| Surprise         | 0.61      | 0.42   | 0.50     | 2817      |
-| Fear             | 0.60      | 0.37   | 0.46     | 1317      |
-| Disgust          | 0.56      | 0.22   | 0.32     | 762       |
-| Anger            | 0.66      | 0.58   | 0.62     | 5018      |
-| Contempt         | 0.25      | 0.00   | 0.01     | 762       |
+The classification report along with Dice, Sensitivity, and Specificity:
+
+| **UNet with Backbone** | **Class** | **Precision** | **Recall** | **F1-score** | **Support** | **Dice** | **Sensitivity** | **Specificity** |
+|------------------------|-----------|---------------|------------|--------------|-------------|----------|-----------------|-----------------|
+| **VGG-16 baseline**    | 0         | 0.97          | 0.97       | 0.97         | 615,463     | 0.96     | 0.97            | 0.99            |
+|                        | 1         | 0.94          | 0.87       | 0.91         | 1,717,184   | 0.90     | 0.86            | 0.98            |
+|                        | 2         | 0.23          | 0.07       | 0.10         | 36,233      | 0.10     | 0.07            | 0.99            |
+|                        | 3         | 0.99          | 0.97       | 0.98         | 1,902,580   | 0.98     | 0.97            | 0.99            |
+|                        | 4         | 0.89          | 0.95       | 0.92         | 572,216     | 0.92     | 0.95            | 0.99            |
+|                        | 5         | 0.92          | 0.97       | 0.94         | 1,096,160   | 0.94     | 0.97            | 0.98            |
+|                        | 6         | 0.78          | 0.43       | 0.55         | 59,336      | 0.55     | 0.43            | 0.99            |
+|                        | 7         | 0.65          | 0.77       | 0.71         | 203,187     | 0.71     | 0.77            | 0.99            |
+|                        | 8         | 0.83          | 0.91       | 0.87         | 115,106     | 0.87     | 0.91            | 0.99            |
+|                        | 9         | 0.33          | 0.64       | 0.43         | 43,080      | 0.43     | 0.64            | 0.99            |
+|                        | 10        | 0.89          | 0.57       | 0.70         | 145,587     | 0.70     | 0.57            | 0.99            |
+|                        | 11        | 0.27          | 0.43       | 0.33         | 113,004     | 0.33     | 0.43            | 0.97            |
+| **MobileNet V2**       | 0         | 0.96          | 0.97       | 0.97         | 607,222     | 0.96     | 0.97            | 0.99            |
+|                        | 1         | 0.94          | 0.89       | 0.91         | 1,717,184   | 0.91     | 0.89            | 0.97            |
+|                        | 2         | 0.23          | 0.08       | 0.12         | 36,233      | 0.001    | 0.0008          | 1.00            |
+|                        | 3         | 0.99          | 0.97       | 0.98         | 1,902,580   | 0.98     | 0.97            | 0.99            |
+|                        | 4         | 0.90          | 0.96       | 0.92         | 572,216     | 0.92     | 0.96            | 0.99            |
+|                        | 5         | 0.92          | 0.97       | 0.94         | 1,096,160   | 0.94     | 0.97            | 0.98            |
+|                        | 6         | 0.60          | 0.19       | 0.29         | 59,336      | 0.32     | 0.19            | 1.00            |
+|                        | 7         | 0.74          | 0.75       | 0.75         | 203,187     | 0.68     | 0.75            | 0.98            |
+|                        | 8         | 0.86          | 0.91       | 0.88         | 115,106     | 0.82     | 0.91            | 0.99            |
+|                        | 9         | 0.35          | 0.60       | 0.44         | 43,080      | 0.49     | 0.60            | 0.99            |
+|                        | 10        | 0.92          | 0.53       | 0.66         | 145,587     | 0.66     | 0.53            | 1.00            |
+|                        | 11        | 0.26          | 0.41       | 0.32         | 113,004     | 0.34     | 0.41            | 0.98            |
+| **EfficientNet B5**    | 0         | 0.97          | 0.97       | 0.97         | 615,463     | 0.97     | 0.97            | 0.99            |
+|                        | 1         | 0.94          | 0.89       | 0.91         | 1,717,184   | 0.91     | 0.89            | 0.98            |
+|                        | 2         | 0.29          | 0.01       | 0.02         | 36,233      | 0.02     | 0.013           | 0.98            |
+|                        | 3         | 0.99          | 0.98       | 0.98         | 1,902,580   | 0.98     | 0.98            | 1.00            |
+|                        | 4         | 0.90          | 0.96       | 0.93         | 572,216     | 0.93     | 0.96            | 0.99            |
+|                        | 5         | 0.93          | 0.97       | 0.95         | 1,096,160   | 0.95     | 0.97            | 0.99            |
+|                        | 6         | 0.67          | 0.37       | 0.47         | 59,336      | 0.51     | 0.37            | 1.00            |
+|                        | 7         | 0.82          | 0.89       | 0.85         | 203,187     | 0.74     | 0.89            | 0.98            |
+|                        | 8         | 0.82          | 0.90       | 0.85         | 115,106     | 0.85     | 0.90            | 0.99            |
+|                        | 9         | 0.35          | 0.62       | 0.45         | 43,080      | 0.49     | 0.62            | 0.99            |
+|                        | 10        | 0.84          | 0.65       | 0.73         | 145,587     | 0.74     | 0.65            | 1.00            |
+|                        | 11        | 0.23          | 0.34       | 0.27         | 113,004     | 0.30     | 0.34            | 0.98            |
 
 ResNet-18 has outperformed the other two models in all three tasks.
 

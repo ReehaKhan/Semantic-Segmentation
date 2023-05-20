@@ -49,6 +49,7 @@ To run these models, here are the instructions.
 The dataset can be requested from [here](https://drive.google.com/file/d/1whVJq5dtxSjvRPEF73fmWKYo-Yvp73_y/view?usp=share_link). Please load the dataset on to your Google Drive from where it will be mounted.
 
 ### Running the Scripts
+#### Train
 To train the model on your system, please follow the following steps:
 1. Download the script choosen from the 'Notebooks' folder and upload to Google Colab.
 2. Mount the Google Drive and change the paths in the notebook.
@@ -57,6 +58,7 @@ To train the model on your system, please follow the following steps:
 5. When training the model, one epoch takes almost 12-15 seconds on standard Google Colab GPU T4. The training progress and the checkpoint at each epoch are saved as '.pth' file in the drive (keep in mind to change the paths).
 6. After training is complete, the best validation performance model will be saved in your Google Drive.
 
+#### Test
 To test the model on the dataset, please follow the following steps:
 1. Download the script choosen from the 'Notebooks' folder.
 2. Download the model you want to test from the 'Models' folder.

@@ -69,15 +69,60 @@ real-life scenes from the streets mostly. There were 2 folders in the data, one
 containing the train images and their corresponding masks and the other containing the test images and their corresponding masks. The train set was split
 into train and validation with an 80-20 ratio. The data set has the following
 properties:
-• 367 images and masks in the train set.
-• 101 images and masks in the test set, from the same scene.
-• There are 12 semantic classes: Background, Sky, Building, Pole, Road,
+- 367 images and masks in the train set.
+- 101 images and masks in the test set, from the same scene.
+- There are 12 semantic classes: Background, Sky, Building, Pole, Road,
 Pavement, Tree, Sign Symbol, Fence, Car, Pedestrian, and Bicyclist.
 
 In this project, the count of images in the train, test and validation set is as follows.
 | Train | Test | Validation |
 |-------|-------|-----------|
 | 293 | 101 | 74 |
+
+## Data Augmentation
+There is a class imbalance in the dataset, therefore,
+we propose to apply more augmentation to the images that contain the
+low-frequency classes. For this, 2 different transforms are defined:
+- Transform: This is a basic transform that only resizes, and flips.
+- Transform Augmentation: This is the transform that is used to apply the
+augmentation. It contains many different augmentation ways.
+
+The conditions to apply each of the
+transforms are discussed in the following pipeline:
+1. The percentage of each class in the train set is found.
+2. Any class whose percentage is said to be a low-frequency class.
+3. For each image in the training set, find the percentage of classes in that
+image.
+4. If the percentage of any of the low-frequency classes is greater than 10%
+then apply the transform augmentation to that image and mask. If not,
+then apply the simple transform.
+5. For all the images and masks in the validation and testing set, the simple
+transform is only applied.
+
+<p align="center">
+    <img src="https://github.com/ReehaKhan/Semantic-Segmentation/blob/main/Augmentation/transform.png" width="600" height="50">
+    <br>
+    <em>Simple Transform</em>
+    </br>
+    <img src="https://github.com/ReehaKhan/Semantic-Segmentation/blob/main/Augmentation/aug_transform.png" width="600" height="300">
+    <br>
+    <em>Augmentation Transform</em>
+    </br>
+</p>
+
+Along with these, normalization is also performed by first calculating the
+mean and standard deviation of the train set. The details of the augmentation
+transform are as follows:
+- Resize the image to a size of 256x256 pixels using nearest neighbor
+interpolation.
+- Apply horizontal and vertical flips randomly.
+- Perform random cropping of the image to a size of 256x256 pixels.
+- Randomly rotate the image by 90 degrees.
+- Apply grid distortion with a probability of 0.2.
+- Apply one of the following transformations randomly: random brightness/-
+contrast adjustment, random hue/saturation/value adjustment, or random
+RGB channel shift.
+- Add Gaussian noise to the image.
 
 ## Models
 The model chosen for this task is UNet. It is implemented using three different backbones and the results are compared. The backbones are VGG-16, MobileNet-V2, and EfficientNet-B5. UNet with VGG-16 backbone is considered as the baseline.
@@ -87,7 +132,7 @@ decoder is such that it complements the backbone by gradually upsampling and
 fusing the feature maps. 
 
 <p align="center">
-    <img src="https://github.com/ReehaKhan/Semantic-Segmentation/blob/main/Architecture/unet%20architecture.png" width="500" height="300">
+    <img src="https://github.com/ReehaKhan/Semantic-Segmentation/blob/main/Architecture/unet%20architecture.png" width="600" height="400">
 </p>
 
 The paramters and the transfer learning setting for the models are as follows. Transfer learning is applied to all of the models, with the pre-trained weights from Imagenet.
@@ -133,7 +178,7 @@ The classification report along with Dice, Sensitivity, and Specificity:
 
 | **UNet with Backbone** | **Class** | **Precision** | **Recall** | **F1-score** | **Support** | **Dice** | **Sensitivity** | **Specificity** |
 |------------------------|-----------|---------------|------------|--------------|-------------|----------|-----------------|-----------------|
-| **VGG-16 baseline**    | 0         | 0.97          | 0.97       | 0.97         | 615,463     | 0.96     | 0.97            | 0.99            |
+| **VGG-16 (baseline)**  | 0         | 0.97          | 0.97       | 0.97         | 615,463     | 0.96     | 0.97            | 0.99            |
 |                        | 1         | 0.94          | 0.87       | 0.91         | 1,717,184   | 0.90     | 0.86            | 0.98            |
 |                        | 2         | 0.23          | 0.07       | 0.10         | 36,233      | 0.10     | 0.07            | 0.99            |
 |                        | 3         | 0.99          | 0.97       | 0.98         | 1,902,580   | 0.98     | 0.97            | 0.99            |
@@ -170,11 +215,12 @@ The classification report along with Dice, Sensitivity, and Specificity:
 |                        | 10        | 0.84          | 0.65       | 0.73         | 145,587     | 0.74     | 0.65            | 1.00            |
 |                        | 11        | 0.23          | 0.34       | 0.27         | 113,004     | 0.30     | 0.34            | 0.98            |
 
-ResNet-18 has outperformed the other two models in all three tasks.
+UNet with EfficientNet-B5 backbone has outperformed the other two models.
 
-### Some classifications by ResNet-18
+### Visualisation by UNet with EfficientNet-B5
 <p align="left">
-    <img src="https://github.com/ReehaKhan/Facial-Expression-Recognition-and-Computing-Valence-and-Arousal/blob/main/Performance%20Evaluation/ResNet-18/res%20correctly%20classified%20images.png" width="500" height="300">
+    <img src="https://github.com/ReehaKhan/Semantic-Segmentation/blob/main/Performance/img1.png" width="200" height="180">
 </p>
-<p align="left">
-    <img src="https://github.com/ReehaKhan/Facial-Expression-Recognition-and-Computing-Valence-and-Arousal/blob/main/Performance%20Evaluation/ResNet-18/res%20incorrectly%20classified%20images.png" width="500" height="300">
+<p align='left'>
+    <img src="https://github.com/ReehaKhan/Semantic-Segmentation/blob/main/Performance/pred1.png" width="500" height="350">
+</p>

@@ -92,7 +92,8 @@ fusing the feature maps.
 
 The paramters and the transfer learning setting for the models are as follows. Transfer learning is applied to all of the models, with the pre-trained weights from Imagenet.
 
-|          UNET with the backbone of                         |
+|UNET with the backbone of |  |  | 
+|-------|-----------|--------------|-----------------|
 |       | VGG-16 (baseline) | MobileNet-V2 | EfficientNet-B5 |
 |-------|-----------|--------------|-----------------|
 | Parameters | 23,749,836 | 6,630,540 | 30,164,924 |

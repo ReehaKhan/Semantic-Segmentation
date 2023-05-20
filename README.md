@@ -42,26 +42,29 @@ To run these models, here are the instructions.
 - matplotlib==3.5.1
 - seaborn==0.12.2
 - tqdm==4.65.0
+- albumentations==1.2.1
+- cv2==4.7.0
 
 ### Data Set
-The dataset can be requested from [here](https://drive.google.com/file/d/1dj2oG5y-D8kEOilE7EzNNoidfRef_eiM/view?usp=share_link). Please load the dataset on to your Google Drive from where it will be mounted.
+The dataset can be requested from [here](https://drive.google.com/file/d/1whVJq5dtxSjvRPEF73fmWKYo-Yvp73_y/view?usp=share_link). Please load the dataset on to your Google Drive from where it will be mounted.
 
-### Running the Train Scripts
+### Running the Scripts
 To train the model on your system, please follow the following steps:
-1. Download the train script from the 'Train' folder and upload to Google Colab.
-2. Mount the Google Drive and change the paths in the training notebook.
-3. Run the code sequentially.
-4. When training the model, one epoch takes one hour on standard Google Colab GPU T4. The training progress and the checkpoint at each epoch are saved as '.pth' file in the drive (keep in mind to change the paths).
-5. After training is complete, the best validation performance model will be saved in your Google Drive.
+1. Download the script choosen from the 'Notebooks' folder and upload to Google Colab.
+2. Mount the Google Drive and change the paths in the notebook.
+3. Run the code sequentially (libraries, DataSet and Model).
+4. Run the Training subpart.
+5. When training the model, one epoch takes almost 12-15 seconds on standard Google Colab GPU T4. The training progress and the checkpoint at each epoch are saved as '.pth' file in the drive (keep in mind to change the paths).
+6. After training is complete, the best validation performance model will be saved in your Google Drive.
 
-### Running the Test Scripts
 To test the model on the dataset, please follow the following steps:
-1. From the 'Models' folder, open the models link.
-2. Download the model you want to test.
-3. Download the respective test script from the 'Test' folder.
-4. Upload the test script and the model file to Google Colab.
-5. Mount the Google Drive and change the paths in the testing notebook.
-6. Run the code sequentially.
+1. Download the script choosen from the 'Notebooks' folder.
+2. Download the model you want to test from the 'Models' folder.
+3. Upload the script and the model file to Google Colab.
+4. Mount the Google Drive and change the paths in the notebook.
+5. Run the code sequentially (libraries, DataSet and Model).
+6. Run the Testing subpart. (**IMP**: please Note to ignore the Training subpart)
+
 
 ## DataSet
 The dataset used in this project is quite small. It contained images of
